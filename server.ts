@@ -8,5 +8,6 @@ app.use(bodyParser.json())
 
 app.use('/', useRouter)
 app.listen(8000,()=>{
+  console.log('测试 push 是否自动上传')
   console.log('启动')
 })
