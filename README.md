@@ -7,6 +7,7 @@
 ## 使用要求
 
 - `Node Version >= 16` 推荐使用 [`nvm`](https://github.com/nvm-sh/nvm) 或 [nvm-windows](https://github.com/coreybutler/nvm-windows)（windows） 来管理 Node 版本。
+- 推荐使用 [ethers.js @5.4.1](https://github.com/everFinance/everpay-js/blob/main/package.json#L57)
 # 目录
 ## 基本查询类
 
