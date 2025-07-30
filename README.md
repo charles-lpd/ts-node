@@ -7,7 +7,7 @@
 ## 使用要求
 
 - `Node Version >= 16` 推荐使用 [`nvm`](https://github.com/nvm-sh/nvm) 或 [nvm-windows](https://github.com/coreybutler/nvm-windows)（windows） 来管理 Node 版本。
-- 推荐使用 [ethers.js @5.4.1](https://github.com/everFinance/everpay-js/blob/main/package.json#L57)
+- 推荐使用 [ethers.js @5.4.1](https://docs.ethers.org/v5/)
 # 目录
 ## 基本查询类
 
@@ -33,30 +33,137 @@
 
 ```bash
 
-npm install hyjs-test
+npm install hyjs-test ethers@5.4.1
 
 # 或
 
-yarn add hyjs-test
-
+yarn add hyjs-test ethers@5.4.1
 ```
+
+## 使用方式
+
+- 👉 [Node](#node-环境)
+- 👉 [Web](#web-环境)
+
+---
+
+### Node 环境
 
 ```ts
 import HyMatrix from 'hyjs-test'
+import arweaveKeyFile from 'arweave-key-file.json'
 
-const accid  = '0xfc65E09Ef6674DdB4D8a6f3b6a6c8D9d55d67716'
-const sdk = new HyMatrix({
+const accid  = '...' // ethereumAddress or ArweaveAddress
+const hyMatrix1 = new HyMatrix({
+  debug: true
+})
+
+hyMatrix1.info().then(console.log)
+hyMatrix1.balanceOf(accid).then(console.log)
+
+
+const hyMatrix2 = new HyMatrix({
   accid: accid,
   debug: true
 })
 
-async function main() {
-  const info = await sdk.info()
-  console.log('网络信息:', info)
+hyMatrix2.balanceOf().then(console.log)
 
-  const msgId = 'vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig'
-  const result = await sdk.getResult(msgId)
-  console.log('消息结果:', result)
+
+// eth 私钥
+const ethereumPrivateKey = '0x...' // 0x + 64位私钥， 共66位
+const hyMatrix3 = new HyMatrix({
+ privateKey: ethereumPrivateKey
+})
+
+// or
+
+// arweave key-file json
+const hyMatrix3 = new HyMatrix({
+ arJWK: arweaveKeyFile
+})
+
+// 转账：以 hmAR 为例
+const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
+const tags = [
+  { name: 'Action', value: 'Transfer' },
+  { name: 'Recipient', value: '收款地址' },
+  { name: 'Quantity', value: '100' }
+]
+async function main() {
+  const params = {
+      tags,
+      processId,
+      data: '' // 可选, 默认为空字符串
+  }
+  const result = await hyMatrix3.sendMessage(params)
+  console.log(result.id)
+
+  // wait/ 稍等片刻
+  const result2 = await await hyMatrix3.getResult(result.id)
+  console.log(result2)
+}
+
+main()
+
+```
+### Web 环境
+
+```ts
+import HyMatrix from 'hyjs-test'
+import { Web3Provider } from '@ethersproject/providers'
+
+// window.arweaveWallet.getActiveAddress()
+const accid = await window.arweaveWallet.getActiveAddress()
+const hyMatrix1 = new HyMatrix({
+  debug: true
+})
+
+hyMatrix1.info().then(console.log)
+hyMatrix1.balanceOf(accid).then(console.log)
+
+
+const hyMatrix2 = new HyMatrix({
+  accid: accid,
+  debug: true
+})
+
+hyMatrix2.balanceOf().then(console.log)
+
+
+// arweaveWallet : 'use_wallet' = window.arweaveWallet
+const hyMatrix3 = new HyMatrix({
+ arJWK: 'use_wallet'
+})
+
+// or
+
+// 若多个 ethereum 钱包同时存在，可使用 `eip6963:announceProvider` 和 `eip6963:requestProvider` 区分
+// 相关文档 https://eips.ethereum.org/EIPS/eip-6963#announce-and-request-events
+const provider = new Web3Provider(window.ethereum)
+// ethereumWallet
+const hyMatrix3 = new HyMatrix({
+ signer: provider
+})
+
+// 以 hmAR 为例
+const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
+const tags = [
+  { name: 'Action', value: 'Transfer' },
+  { name: 'Recipient', value: '收款地址' },
+  { name: 'Quantity', value: '100' }
+]
+async function main() {
+  const params = {
+      tags,
+      processId,
+      data: '' // 可选, 默认为空字符串
+  }
+  const result = await hyMatrix3.sendMessage(params)
+  console.log(result.id)
+  // wait/ 稍等片刻
+  const result2 = await await hyMatrix3.getResult(result.id)
+  console.log(result2)
 }
 
 main()
