@@ -42,11 +42,11 @@ yarn add hyjs-test ethers@5.4.1
 
 ## 使用方式
 
-- 👉 [Node](#node-环境)
+- 👉 [Node环境](#node-环境)
 > `privateKey`: ethereum 私钥， 由 '0x' + `64`位私钥， 共 `66` 位。
 
 > `arJWK`: arweave JWKInterface JSON 文件，参考 [arweave Docs - Sample JWK](https://docs.arweave.org/developers/arweave-node-server/http-api#sample-jwk)
-- 👉 [Web](#web-环境)
+- 👉 [Web环境](#web-环境)
 
 > `signer`: ethereum 签名， 通过 `new Web3Provider(window.ethereum)` 创建。
 
