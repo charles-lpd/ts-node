@@ -107,7 +107,7 @@ async function main() {
   console.log(result.id)
 
   // wait/ 稍等片刻
-  const result2 = await await hyMatrix3.getResult(result.id)
+  const result2 = await hyMatrix3.getResult(result.id)
   console.log(result2)
 }
 
@@ -169,7 +169,7 @@ async function main() {
   const result = await hyMatrix3.sendMessage(params)
   console.log(result.id)
   // wait/ 稍等片刻
-  const result2 = await await hyMatrix3.getResult(result.id)
+  const result2 = await hyMatrix3.getResult(result.id)
   console.log(result2)
 }
 
@@ -221,23 +221,23 @@ const hyMatrix = new HyMatrix({
 const messageId = 'vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig'
 hyMatrix.getResult(messageId).then(console.log)
 
-{
-  "Nonce": "14",
-  "Timestamp": "1753857762472",
-  "Item-Id": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig",
-  "From-Process": "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
-  "Pushed-For": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig",
-  "Messages": [...],
-  "Spawns": [...],
-  "Assignmengts": null,
-  "Output": {
-  "data": "",
-  "print": true,
-  "prompt": "\u001b[32m\u001b[90m@\u001b[34maos-2.0.1\u001b[90m[Inbox:\u001b[31m\u001b[90m]\u001b[0m> "
-  },
-  "Data": "",
-  "Error": ""
-}
+// {
+//   "Nonce": "14",
+//   "Timestamp": "1753857762472",
+//   "Item-Id": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig",
+//   "From-Process": "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
+//   "Pushed-For": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig",
+//   "Messages": [...],
+//   "Spawns": [...],
+//   "Assignmengts": null,
+//   "Output": {
+//   "data": "",
+//   "print": true,
+//   "prompt": "\u001b[32m\u001b[90m@\u001b[34maos-2.0.1\u001b[90m[Inbox:\u001b[31m\u001b[90m]\u001b[0m> "
+//   },
+//   "Data": "",
+//   "Error": ""
+// }
 ```
 
 ### getResults(processId, limit)
@@ -254,31 +254,31 @@ const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
 const limit = 10
 hyMatrix.getResults(processId,limit).then(console.log)
 
-{
-  "edges": [
-    {
-      "cursor": "eyJ0aW1lc3RhbXAiOjE3NTM4NDYwNzExNDksIm9yZGluYXRlIjo1LCJjcm9uIjoiMS0xMC1taW51dGVzIiwic29ydCI6IkFTQyJ9",
-      "node": {
-        "Nonce": "5",
-        "Timestamp": "1753846071149",
-        "Item-Id": "WjQGupfw-pHl6MluPxuSSvNb3e-oKNfg_rFSxIlXASw",
-        "From-Process": "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
-        "Pushed-For": "WjQGupfw-pHl6MluPxuSSvNb3e-oKNfg_rFSxIlXASw",
-        "Messages": [],
-        "Spawns": [],
-        "Assignmengts": null,
-        "Output": {
-          "data": "2.0.1",
-          "prompt": "\u001b[32m\u001b[90m@\u001b[34maos-2.0.1\u001b[90m[Inbox:\u001b[31m\u001b[90m]\u001b[0m> ",
-          "test": "{\n    [1] = \"2.0.1\"\n}"
-        },
-        "Data": "",
-        "Error": ""
-      },
-    }
-    // ...etc
-  ]
-}
+// {
+//   "edges": [
+//     {
+//       "cursor": "eyJ0aW1lc3RhbXAiOjE3NTM4NDYwNzExNDksIm9yZGluYXRlIjo1LCJjcm9uIjoiMS0xMC1taW51dGVzIiwic29ydCI6IkFTQyJ9",
+//       "node": {
+//         "Nonce": "5",
+//         "Timestamp": "1753846071149",
+//         "Item-Id": "WjQGupfw-pHl6MluPxuSSvNb3e-oKNfg_rFSxIlXASw",
+//         "From-Process": "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
+//         "Pushed-For": "WjQGupfw-pHl6MluPxuSSvNb3e-oKNfg_rFSxIlXASw",
+//         "Messages": [],
+//         "Spawns": [],
+//         "Assignmengts": null,
+//         "Output": {
+//           "data": "2.0.1",
+//           "prompt": "\u001b[32m\u001b[90m@\u001b[34maos-2.0.1\u001b[90m[Inbox:\u001b[31m\u001b[90m]\u001b[0m> ",
+//           "test": "{\n    [1] = \"2.0.1\"\n}"
+//         },
+//         "Data": "",
+//         "Error": ""
+//       },
+//     }
+//     // ...etc
+//   ]
+// }
 ```
 
 ### getMessage(msgId)
@@ -294,17 +294,18 @@ const hyMatrix = new HyMatrix({
 const messageId = 'vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig'
 hyMatrix.getMessage(messageId).then(console.log)
 
-{
-  "signatureType": 3,
-  "signature": "ad21YuS8X3iZXcAyGJoFr0X6-FuHvR391LlxrY47J6sxCWeUtABfzuwWf4uRmhAVw-rbcZqyjo28ZPWe_9B9CRw",
-  "owner": "BBTIm0IztpJRvpiRLfiSxckjR-1e5BRfqFXcFdIs5uekXvJu7v5CME1ahX6uAXKJvYrMbIEVJ-LDnIYcwAe1aW4",
-  "target": "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
-  "anchor": "",
-  "tags": [...],
-  "data": "",
-  "id": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig",
-  "tagsBy":     "DhpTREstVGltZXN0YW1wGjE3NTM4NTc3NjE3MzQaRGF0YS1Qcm90b2NvbAhoeW14DlZhcmlhbnQMdjAuMS4wCFR5cGUOTWVzc2FnZQxBY3Rpb24QVHJhbnNmZXISUmVjaXBpZW50Vl9xcmhwNF9jLWpsMUl3TEtjd2xER01DcXMzQng3M2VKZXB0QWhZTjl3Tm8QUXVhbnRpdHkGMTAwAA"
-}
+// {
+//   "signatureType": 3,
+//   "signature": "ad21YuS8X3iZXcAyGJoFr0X6-FuHvR391LlxrY47J6sxCWeUtABfzuwWf4uRmhAVw-rbcZqyjo28ZPWe_9B9CRw",
+//   "owner": "BBTIm0IztpJRvpiRLfiSxckjR-1e5BRfqFXcFdIs5uekXvJu7v5CME1ahX6uAXKJvYrMbIEVJ-LDnIYcwAe1aW4",
+//   "target": "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
+//   "anchor": "",
+//   "tags": [...],
+//   "data": "",
+//   "id": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig",
+//   "tagsBy": "DhpTREstVGltZXN0YW1wGjE3NTM4NTc3NjE3MzQaRGF0YS1Qcm90b2NvbAhoeW14DlZhcmlhbnQMdjAuMS4wCFR5cGUOTWVzc2FnZQxBY3Rpb24QVHJhbnNmZXISUmVjaXBpZW50Vl9xcmhwNF9jLWpsMUl3TEtjd2xER01DcXMzQng3M2VKZXB0QWhZTjl3Tm8QUXVhbnRpdHkGMTAwAA"
+// }
+
 ```
 ### getMessageByNonce(processId, nonce)
 
@@ -320,17 +321,17 @@ const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
 const nonce = 14
 hyMatrix.getMessageByNonce(processId, nonce).then(console.log)
 
-{
-  "signatureType": 3,
-  "signature": "ad21YuS8X3iZXcAyGJoFr0X6-FuHvR391LlxrY47J6sxCWeUtABfzuwWf4uRmhAVw-rbcZqyjo28ZPWe_9B9CRw",
-  "owner": "BBTIm0IztpJRvpiRLfiSxckjR-1e5BRfqFXcFdIs5uekXvJu7v5CME1ahX6uAXKJvYrMbIEVJ-LDnIYcwAe1aW4",
-  "target": "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
-  "anchor": "",
-  "tags": [...],
-  "data": "",
-  "id": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig",
-  "tagsBy":     "DhpTREstVGltZXN0YW1wGjE3NTM4NTc3NjE3MzQaRGF0YS1Qcm90b2NvbAhoeW14DlZhcmlhbnQMdjAuMS4wCFR5cGUOTWVzc2FnZQxBY3Rpb24QVHJhbnNmZXISUmVjaXBpZW50Vl9xcmhwNF9jLWpsMUl3TEtjd2xER01DcXMzQng3M2VKZXB0QWhZTjl3Tm8QUXVhbnRpdHkGMTAwAA"
-}
+// {
+//   "signatureType": 3,
+//   "signature": "ad21YuS8X3iZXcAyGJoFr0X6-FuHvR391LlxrY47J6sxCWeUtABfzuwWf4uRmhAVw-rbcZqyjo28ZPWe_9B9CRw",
+//   "owner": "BBTIm0IztpJRvpiRLfiSxckjR-1e5BRfqFXcFdIs5uekXvJu7v5CME1ahX6uAXKJvYrMbIEVJ-LDnIYcwAe1aW4",
+//   "target": "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
+//   "anchor": "",
+//   "tags": [...],
+//   "data": "",
+//   "id": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig",
+//   "tagsBy": "DhpTREstVGltZXN0YW1wGjE3NTM4NTc3NjE3MzQaRGF0YS1Qcm90b2NvbAhoeW14DlZhcmlhbnQMdjAuMS4wCFR5cGUOTWVzc2FnZQxBY3Rpb24QVHJhbnNmZXISUmVjaXBpZW50Vl9xcmhwNF9jLWpsMUl3TEtjd2xER01DcXMzQng3M2VKZXB0QWhZTjl3Tm8QUXVhbnRpdHkGMTAwAA"
+// }
 ```
 
 ### getAssignByNonce(processId, nonce)
@@ -345,19 +346,19 @@ const hyMatrix = new HyMatrix({
 })
 const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
 const nonce = 14
-hyMatrix.getMessageByNonce(processId, nonce).then(console.log)
+hyMatrix.getAssignByNonce(processId, nonce).then(console.log)
 
-{
-  "signatureType": 3,
-  "signature": "6Jo8HM8mqv8YVb-lcFWf_W4_dUxFAYrf0f-P5Vsjqlp8Ie7Abh1D-bCxY0j6VwjmLtxGKMkNc_BpX2MPwEtvohs",
-  "owner": "BKhc8fzcrT9QVrWp4i6RTpke9C5vNb5XjJX18LgrnRzCYGDZcIXztIrR-0hBb_mzF3pjqfl4tMyJ_bGzAWKrqFs",
-  "target": "",
-  "anchor": "",
-  "tags": [...],
-  "data": "",
-  "id": "igsAKUQ0uGkm6f8o9hEAnQ2-fpEr1b3WpGXWtIwoFUM",
-  "tagsBy":   "DhpEYXRhLVByb3RvY29sCGh5bXgOVmFyaWFudAx2MC4xLjAIVHlwZRRBc3NpZ25tZW50DlByb2Nlc3NWR3V1SDF3Q09CYXRHLUpvS3U0Mk5rSk1DN0N4LXJqRDhGNUVFSUNMVE5QOA5NZXNzYWdlVnZERG93RTNOck5LZkF5WnRmRUdhVExya09ocjNEREIyRF8tVnMyMlo4aWcKTm9uY2UEMTQSVGltZXN0YW1wGjE3NTM4NTc3NjI0NjgA"
-}
+// {
+//   "signatureType": 3,
+//   "signature": "6Jo8HM8mqv8YVb-lcFWf_W4_dUxFAYrf0f-P5Vsjqlp8Ie7Abh1D-bCxY0j6VwjmLtxGKMkNc_BpX2MPwEtvohs",
+//   "owner": "BKhc8fzcrT9QVrWp4i6RTpke9C5vNb5XjJX18LgrnRzCYGDZcIXztIrR-0hBb_mzF3pjqfl4tMyJ_bGzAWKrqFs",
+//   "target": "",
+//   "anchor": "",
+//   "tags": [...],
+//   "data": "",
+//   "id": "igsAKUQ0uGkm6f8o9hEAnQ2-fpEr1b3WpGXWtIwoFUM",
+//   "tagsBy": "DhpEYXRhLVByb3RvY29sCGh5bXgOVmFyaWFudAx2MC4xLjAIVHlwZRRBc3NpZ25tZW50DlByb2Nlc3NWR3V1SDF3Q09CYXRHLUpvS3U0Mk5rSk1DN0N4LXJqRDhGNUVFSUNMVE5QOA5NZXNzYWdlVnZERG93RTNOck5LZkF5WnRmRUdhVExya09ocjNEREIyRF8tVnMyMlo4aWcKTm9uY2UEMTQSVGltZXN0YW1wGjE3NTM4NTc3NjI0NjgA"
+// }
 ```
 
 ### getAssignByMessage(msgId)
@@ -374,17 +375,17 @@ const messageId = 'vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig'
 
 hyMatrix.getAssignByMessage(messageId).then(console.log)
 
-{
-  "signatureType": 3,
-  "signature": "6Jo8HM8mqv8YVb-lcFWf_W4_dUxFAYrf0f-P5Vsjqlp8Ie7Abh1D-bCxY0j6VwjmLtxGKMkNc_BpX2MPwEtvohs",
-  "owner": "BKhc8fzcrT9QVrWp4i6RTpke9C5vNb5XjJX18LgrnRzCYGDZcIXztIrR-0hBb_mzF3pjqfl4tMyJ_bGzAWKrqFs",
-  "target": "",
-  "anchor": "",
-  "tags": [...],
-  "data": "",
-  "id": "igsAKUQ0uGkm6f8o9hEAnQ2-fpEr1b3WpGXWtIwoFUM",
-  "tagsBy":   "DhpEYXRhLVByb3RvY29sCGh5bXgOVmFyaWFudAx2MC4xLjAIVHlwZRRBc3NpZ25tZW50DlByb2Nlc3NWR3V1SDF3Q09CYXRHLUpvS3U0Mk5rSk1DN0N4LXJqRDhGNUVFSUNMVE5QOA5NZXNzYWdlVnZERG93RTNOck5LZkF5WnRmRUdhVExya09ocjNEREIyRF8tVnMyMlo4aWcKTm9uY2UEMTQSVGltZXN0YW1wGjE3NTM4NTc3NjI0NjgA"
-}
+// {
+//   "signatureType": 3,
+//   "signature": "6Jo8HM8mqv8YVb-lcFWf_W4_dUxFAYrf0f-P5Vsjqlp8Ie7Abh1D-bCxY0j6VwjmLtxGKMkNc_BpX2MPwEtvohs",
+//   "owner": "BKhc8fzcrT9QVrWp4i6RTpke9C5vNb5XjJX18LgrnRzCYGDZcIXztIrR-0hBb_mzF3pjqfl4tMyJ_bGzAWKrqFs",
+//   "target": "",
+//   "anchor": "",
+//   "tags": [...],
+//   "data": "",
+//   "id": "igsAKUQ0uGkm6f8o9hEAnQ2-fpEr1b3WpGXWtIwoFUM",
+//   "tagsBy": "DhpEYXRhLVByb3RvY29sCGh5bXgOVmFyaWFudAx2MC4xLjAIVHlwZRRBc3NpZ25tZW50DlByb2Nlc3NWR3V1SDF3Q09CYXRHLUpvS3U0Mk5rSk1DN0N4LXJqRDhGNUVFSUNMVE5QOA5NZXNzYWdlVnZERG93RTNOck5LZkF5WnRmRUdhVExya09ocjNEREIyRF8tVnMyMlo4aWcKTm9uY2UEMTQSVGltZXN0YW1wGjE3NTM4NTc3NjI0NjgA"
+// }
 ```
 
 ### getNodes()
@@ -400,16 +401,16 @@ const hyMatrix = new HyMatrix({
 
 hyMatrix.getNodes().then(console.log)
 
-{
-  "0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138": {
-  "Acc-Id": "0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138",
-  "Name": "permadao",
-  "Role": "follower",
-  "Desc": "permadao test node",
-  "URL": "https://hymx.permadao.io"
-  },
-  // ...etc
-}
+// {
+//   "0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138": {
+//   "Acc-Id": "0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138",
+//   "Name": "permadao",
+//   "Role": "follower",
+//   "Desc": "permadao test node",
+//   "URL": "https://hymx.permadao.io"
+//   },
+//   // ...etc
+// }
 ```
 ### getNode(accid?)
 
@@ -426,13 +427,13 @@ const hyMatrix = new HyMatrix({
 hyMatrix.getNode().then(console.log)
 // hyMatrix.getNode(accid).then(console.log)
 
-{
-  "Acc-Id": "0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138",
-  "Name": "permadao",
-  "Role": "follower",
-  "Desc": "permadao test node",
-  "URL": "https://hymx.permadao.io"
-}
+// {
+//   "Acc-Id": "0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138",
+//   "Name": "permadao",
+//   "Role": "follower",
+//   "Desc": "permadao test node",
+//   "URL": "https://hymx.permadao.io"
+// }
 ```
 
 ### getNodesByProcess(processId)
@@ -448,16 +449,16 @@ const hyMatrix = new HyMatrix({
 const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
 hyMatrix.getNodesByProcess(processId).then(console.log)
 
-[
-  {
-    "Acc-Id": "0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138",
-    "Name": "permadao",
-    "Role": "follower",
-    "Desc": "permadao test node",
-    "URL": "https://hymx.permadao.io"
-  },
-  // ...
-]
+// [
+//   {
+//     "Acc-Id": "0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138",
+//     "Name": "permadao",
+//     "Role": "follower",
+//     "Desc": "permadao test node",
+//     "URL": "https://hymx.permadao.io"
+//   },
+//   // ...
+// ]
 ```
 
 ### getProcesses(accid?)
@@ -475,11 +476,11 @@ const hyMatrix = new HyMatrix({
 hyMatrix.getProcesses().then(console.log)
 // hyMatrix.getProcesses(accid).then(console.log)
 
-[
-  "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
-  // ...
-  // ...
-]
+// [
+//   "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
+//   // ...
+//   // ...
+// ]
 ```
 
 ### balanceOf(accid?)
@@ -497,7 +498,7 @@ const hyMatrix = new HyMatrix({
 hyMatrix.balanceOf().then(console.log)
 // hyMatrix.balanceOf(accid).then(console.log)
 
-"0"
+// "0"
 ```
 
 ### stakeOf(accid?)
@@ -515,7 +516,7 @@ const hyMatrix = new HyMatrix({
 hyMatrix.stakeOf().then(console.log)
 // hyMatrix.stakeOf(accid).then(console.log)
 
-"0"
+// "0"
 ```
 
 ### sendMessage(params)
@@ -526,13 +527,13 @@ hyMatrix.stakeOf().then(console.log)
 
 ```ts
 // node
-
 import arweaveKeyfile form 'arweaveKeyfile.json'
 const arJWK = arweaveKeyfile
+
 // or
 const ethereumPrivateKey = '0x...' // 0x + 64位私钥， 共66位
 
-const hyMatrix3 = new HyMatrix({
+const hyMatrix = new HyMatrix({
   privateKey: ethereumPrivateKey,
   // arJWK: arweaveKeyFile
 })
@@ -540,16 +541,40 @@ const hyMatrix3 = new HyMatrix({
 // web
 import { Web3Provider } from '@ethersproject/providers'
 const ethereumPrivateKey = '0x...' // 0x + 64位私钥， 共66位
-const arJWK = arweaveKeyfile
-const hyMatrix3 = new HyMatrix({
+// or
+const arJWK = 'use_wallet'
+
+const hyMatrix = new HyMatrix({
   signer: new Web3Provider(window.ethereum),
-  // arJWK: 'use_wallet'
+  // arJWK: arJWK
 })
 
 // 若多个 ethereum 钱包同时存在，可使用 `eip6963:announceProvider` 和 `eip6963:requestProvider` 区分
 // 相关文档 https://eips.ethereum.org/EIPS/eip-6963#announce-and-request-events
 
 
+const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
+const tags = [
+  { name: 'Action', value: 'Transfer' },
+  { name: 'Recipient', value: '收款地址' },
+  { name: 'Quantity', value: '100' }
+]
+
+async function main() {
+  const params = {
+      tags,
+      processId,
+      data: '' // 可选, 默认为空字符串
+  }
+  const result = await hyMatrix3.sendMessage(params)
+  // { "id": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig"}
+  console.log(result.id)
+  // wait/ 稍等片刻
+  const result2 = await hyMatrix3.getResult(result.id)
+  console.log(result2)
+}
+
+main()
 ```
 
 
