@@ -181,79 +181,79 @@ main()
 
 | 方法             | 描述             | 参数            | 返回值                  |
 |------------------|------------------|------------------|--------------------------|
-| `getResult(msgId)` | 根据消息ID查询结果 | `msgId: string` | `Promise<MessageItem>`  |
+| `getResult(msgId)` | 根据消息ID查询结果 | `msgId: string` | `MessageItem`  |
 
 ### getResults(processId, limit?)
 
 | 方法                   | 描述                 | 参数                                           | 返回值                   |
 |------------------------|----------------------|------------------------------------------------|--------------------------|
-| `getResults(processId)`| 获取指定进程的所有结果 | `processId: string`, `limit?: number`         | `Promise<MessageItemMap>` |
+| `getResults(processId)`| 获取指定进程的所有结果 | `processId: string`, `limit?: number`         | `MessageItemMap` |
 
 ### getMessage(msgId)
 
 | 方法               | 描述             | 参数            | 返回值                |
 |--------------------|------------------|------------------|------------------------|
-| `getMessage(msgId)`| 查询消息详细信息 | `msgId: string` | `Promise<BundleItem>`  |
+| `getMessage(msgId)`| 查询消息详细信息 | `msgId: string` | `BundleItem`  |
 
 ### getMessageByNonce(processId, nonce)
 
 | 方法                        | 描述              | 参数                                         | 返回值                |
 |-----------------------------|-------------------|----------------------------------------------|------------------------|
-| `getMessageByNonce(...)`    | 根据随机值查询消息  | `processId: string`, `nonce: number`         | `Promise<BundleItem>`  |
+| `getMessageByNonce(...)`    | 根据随机值查询消息  | `processId: string`, `nonce: number`         | `BundleItem`  |
 
 ### getAssignByNonce(processId, nonce)
 
 | 方法                         | 描述                  | 参数                                         | 返回值                |
 |------------------------------|-----------------------|----------------------------------------------|------------------------|
-| `getAssignByNonce(...)`      | 根据随机值查询任务分配 | `processId: string`, `nonce: number`         | `Promise<BundleItem>`  |
+| `getAssignByNonce(...)`      | 根据随机值查询任务分配 | `processId: string`, `nonce: number`         | `BundleItem`  |
 
 ### getAssignByMessage(msgId)
 
 | 方法                         | 描述                    | 参数            | 返回值                |
 |------------------------------|-------------------------|------------------|------------------------|
-| `getAssignByMessage(msgId)`  | 根据消息 ID 查询任务分配 | `msgId: string` | `Promise<BundleItem>`  |
+| `getAssignByMessage(msgId)`  | 根据消息 ID 查询任务分配 | `msgId: string` | `BundleItem`  |
 
 ### getNodes()
 
 | 方法       | 描述           | 参数 | 返回值             |
 |------------|----------------|------|---------------------|
-| `getNodes()` | 获取所有节点信息 | 无   | `Promise<HMNodeMap>` |
+| `getNodes()` | 获取所有节点信息 | 无   | `HMNodeMap` |
 
 ### getNode(accid?)
 
 | 方法       | 描述             | 参数                    | 返回值           |
 |------------|------------------|--------------------------|------------------|
-| `getNode()`| 查询单个节点信息 | `accid?: string`         | `Promise<HMNode>`|
+| `getNode()`| 查询单个节点信息 | `accid?: string`         | `HMNode`|
 
 ### getNodesByProcess(processId)
 
 | 方法                       | 描述                  | 参数                 | 返回值             |
 |----------------------------|-----------------------|----------------------|---------------------|
-| `getNodesByProcess(...)`   | 查询某个进程的节点信息 | `processId: string` | `Promise<HMNodeMap>` |
+| `getNodesByProcess(...)`   | 查询某个进程的节点信息 | `processId: string` | `HMNodeMap` |
 
 ### getProcesses(accid?)
 
 | 方法              | 描述                    | 参数                 | 返回值              |
 |-------------------|-------------------------|----------------------|----------------------|
-| `getProcesses()`  | 查询账号创建的进程列表   | `accid?: string`     | `Promise<string[]>`  |
+| `getProcesses()`  | 查询账号创建的进程列表   | `accid?: string`     | `string[]`  |
 
 ### balanceOf(accid?)
 
 | 方法           | 描述         | 参数                  | 返回值           |
 |----------------|--------------|------------------------|------------------|
-| `balanceOf()`  | 查询账号余额 | `accid?: string`       | `Promise<string>`|
+| `balanceOf()`  | 查询账号余额 | `accid?: string`       | `string`|
 
 ### stakeOf(accid?)
 
 | 方法         | 描述           | 参数                  | 返回值           |
 |--------------|----------------|------------------------|------------------|
-| `stakeOf()`  | 查询账号质押金额 | `accid?: string`       | `Promise<string>`|
+| `stakeOf()`  | 查询账号质押金额 | `accid?: string`       | `string`|
 
 ### sendMessage(params)
 
 | 方法            | 描述         | 参数                            | 返回值                   |
 |-----------------|--------------|----------------------------------|----------------------------|
-| `sendMessage()` | 发送签名消息 | `params: SendMessageParams`     | `Promise<FormatResponse>`  |
+| `sendMessage()` | 发送签名消息 | `params: SendMessageParams`     | `Response`  |
 
 
 
