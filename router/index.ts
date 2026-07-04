@@ -1,20 +1,22 @@
+import express, { Request, Response } from 'express';
+import { query } from '../db';
 
-import express,{Request, Response} from 'express'
-import { query } from '../db/index'
-const router = express.Router()
+export const router = express.Router();
 
-router.get('/data',async (req:Request, res:Response)=>{
-  // const insertSql = 'insert into users set ?'
-  // const status = await query(insertSql, { username: 'liu111222', password: '000111'})
-  // if(status.name === 1){
-  //   const data = await query('select * from users')
-  //   console.log(data)
-  // }
-  const data = await query('select * from users WHERE username = ?',['liu'])
-res.send(data)
-})
+/**
+ * GET /data
+ * 查询用户数据
+ * 响应格式: 用户记录数组
+ * 示例: { "id": 1, "username": "liu", "password": "xxx" }
+ */
+router.get('/data', async (req: Request, res: Response) => {
+  try {
+    const data = await query('SELECT username, password FROM users WHERE username = ?', ['liu']);
+    res.send(data);
+  } catch (error) {
+    console.error('[Route Error] GET /data 查询失败:', error);
+    res.status(500).send({ error: 'Internal server error' });
+  }
+});
 
-
-
-export default router
-
+export default router;
