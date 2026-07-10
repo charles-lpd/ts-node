@@ -19,10 +19,10 @@
 * GET [/assignmentByNonce/{processId}/{nonce}](#getassignbynonceprocessid-nonce)
 * GET [/assignmentByMessage/{messageId}](#getassignbymessagemsgid)
 * GET [/nodes](#getnodes)
-* GET [/node/{accid}](#getnodeaccid)
+* GET [/node/{accountId}](#getnodeaccountid)
 * GET [/nodesByProcess/{processId}](#getnodesbyprocessprocessid)
-* GET [/balanceof/{accid}](#balanceofaccid)
-* GET [/stakeof/{accid}](#stakeofaccid)
+* GET [/balanceof/{accountId}](#balanceofaccountid)
+* GET [/stakeof/{accountId}](#stakeofaccountid)
 ## 操作类
 
 * POST [/](#sendmessageparams)
@@ -58,19 +58,19 @@ yarn add hyjs-test ethers@5.4.1
 
 ```ts
 import HyMatrix from 'hyjs-test'
-import arweaveKeyFile from 'arweave-key-file.json'
+import arweaveKeyFile from './arweave-key-file.json'
 
-const accid  = '...' // ethereumAddress or ArweaveAddress
+const accountId  = '...' // ethereumAddress or ArweaveAddress
 const hyMatrix1 = new HyMatrix({
   debug: true
 })
 
 hyMatrix1.info().then(console.log)
-hyMatrix1.balanceOf(accid).then(console.log)
+hyMatrix1.balanceOf(accountId).then(console.log)
 
 
 const hyMatrix2 = new HyMatrix({
-  accid: accid,
+  accountId: accountId,
   debug: true
 })
 
@@ -83,12 +83,12 @@ const hyMatrix3 = new HyMatrix({
  privateKey: ethereumPrivateKey
 })
 
-// or
+// or （以下配置与上方 privateKey 互斥，请勿同时使用）
 
 // arweave key-file json
-const hyMatrix3 = new HyMatrix({
- arJWK: arweaveKeyFile
-})
+// const hyMatrix3 = new HyMatrix({
+//  arJWK: arweaveKeyFile
+// })
 
 // 转账：以 hmAR 为例
 const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
@@ -121,17 +121,20 @@ import HyMatrix from 'hyjs-test'
 import { Web3Provider } from '@ethersproject/providers'
 
 // window.arweaveWallet.getActiveAddress()
-const accid = await window.arweaveWallet.getActiveAddress()
+if (!window.arweaveWallet) {
+  throw new Error('请先安装 ArConnect 扩展')
+}
+const accountId = await window.arweaveWallet.getActiveAddress()
 const hyMatrix1 = new HyMatrix({
   debug: true
 })
 
 hyMatrix1.info().then(console.log)
-hyMatrix1.balanceOf(accid).then(console.log)
+hyMatrix1.balanceOf(accountId).then(console.log)
 
 
 const hyMatrix2 = new HyMatrix({
-  accid: accid,
+  accountId: accountId,
   debug: true
 })
 
@@ -143,15 +146,15 @@ const hyMatrix3 = new HyMatrix({
  arJWK: 'use_wallet'
 })
 
-// or
+// or （以下配置与上方 arJWK 互斥，请勿同时使用）
 
 // 若多个 ethereum 钱包同时存在，可使用 `eip6963:announceProvider` 和 `eip6963:requestProvider` 区分
 // 相关文档 https://eips.ethereum.org/EIPS/eip-6963#announce-and-request-events
-const provider = new Web3Provider(window.ethereum)
-// ethereumWallet
-const hyMatrix3 = new HyMatrix({
- signer: provider
-})
+// const provider = new Web3Provider(window.ethereum)
+// // ethereumWallet
+// const hyMatrix3 = new HyMatrix({
+//  signer: provider
+// })
 
 // 以 hmAR 为例
 const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
@@ -412,20 +415,20 @@ hyMatrix.getNodes().then(console.log)
 //   // ...etc
 // }
 ```
-### getNode(accid?)
+### getNode(accountId?)
 
 | 方法       | 描述             | 参数                    | 返回值           |
 |------------|------------------|--------------------------|------------------|
-| `getNode()`| 查询单个节点信息 | `accid?: string`         | `HMNode`|
+| `getNode()`| 查询单个节点信息 | `accountId?: string`         | `HMNode`|
 
 ```ts
-const accid = '0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138'
+const accountId = '0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138'
 const hyMatrix = new HyMatrix({
-  accid: accid,
+  accountId: accountId,
   debug: true
 })
 hyMatrix.getNode().then(console.log)
-// hyMatrix.getNode(accid).then(console.log)
+// hyMatrix.getNode(accountId).then(console.log)
 
 // {
 //   "Acc-Id": "0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138",
@@ -461,20 +464,20 @@ hyMatrix.getNodesByProcess(processId).then(console.log)
 // ]
 ```
 
-### getProcesses(accid?)
+### getProcesses(accountId?)
 
 | 方法              | 描述                    | 参数                 | 返回值              |
 |-------------------|-------------------------|----------------------|----------------------|
-| `getProcesses()`  | 查询账号创建的进程列表   | `accid?: string`     | `string[]`  |
+| `getProcesses()`  | 查询账号创建的进程列表   | `accountId?: string`     | `string[]`  |
 
 ```ts
-const accid = '0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138'
+const accountId = '0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138'
 const hyMatrix = new HyMatrix({
-  accid: accid,
+  accountId: accountId,
   debug: true
 })
 hyMatrix.getProcesses().then(console.log)
-// hyMatrix.getProcesses(accid).then(console.log)
+// hyMatrix.getProcesses(accountId).then(console.log)
 
 // [
 //   "GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8",
@@ -483,38 +486,38 @@ hyMatrix.getProcesses().then(console.log)
 // ]
 ```
 
-### balanceOf(accid?)
+### balanceOf(accountId?)
 
 | 方法           | 描述         | 参数                  | 返回值           |
 |----------------|--------------|------------------------|------------------|
-| `balanceOf()`  | 查询账号余额 | `accid?: string`       | `string`|
+| `balanceOf()`  | 查询账号余额 | `accountId?: string`       | `string`|
 
 ```ts
-const accid = '0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138'
+const accountId = '0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138'
 const hyMatrix = new HyMatrix({
-  accid: accid,
+  accountId: accountId,
   debug: true
 })
 hyMatrix.balanceOf().then(console.log)
-// hyMatrix.balanceOf(accid).then(console.log)
+// hyMatrix.balanceOf(accountId).then(console.log)
 
 // "0"
 ```
 
-### stakeOf(accid?)
+### stakeOf(accountId?)
 
 | 方法         | 描述           | 参数                  | 返回值           |
 |--------------|----------------|------------------------|------------------|
-| `stakeOf()`  | 查询账号质押金额 | `accid?: string`       | `string`|
+| `stakeOf()`  | 查询账号质押金额 | `accountId?: string`       | `string`|
 
 ```ts
-const accid = '0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138'
+const accountId = '0xCD1Ef67a57a7c03BFB05F175Be10e3eC79821138'
 const hyMatrix = new HyMatrix({
-  accid: accid,
+  accountId: accountId,
   debug: true
 })
 hyMatrix.stakeOf().then(console.log)
-// hyMatrix.stakeOf(accid).then(console.log)
+// hyMatrix.stakeOf(accountId).then(console.log)
 
 // "0"
 ```
@@ -527,8 +530,8 @@ hyMatrix.stakeOf().then(console.log)
 
 ```ts
 // node
-import arweaveKeyfile form 'arweaveKeyfile.json'
-const arJWK = arweaveKeyfile
+import arweaveKeyFile from './arweave-key-file.json'
+const arJWK = arweaveKeyFile
 
 // or
 const ethereumPrivateKey = '0x...' // 0x + 64位私钥， 共66位
@@ -538,16 +541,15 @@ const hyMatrix = new HyMatrix({
   // arJWK: arweaveKeyFile
 })
 
-// web
-import { Web3Provider } from '@ethersproject/providers'
-const ethereumPrivateKey = '0x...' // 0x + 64位私钥， 共66位
+// web（以下配置与上方 Node 配置互斥，请勿同时使用）
+// import { Web3Provider } from '@ethersproject/providers'
+// const ethereumPrivateKey = '0x...' // 0x + 64位私钥， 共66位
 // or
-const arJWK = 'use_wallet'
-
-const hyMatrix = new HyMatrix({
-  signer: new Web3Provider(window.ethereum),
-  // arJWK: arJWK
-})
+// const arJWK = 'use_wallet'
+// const hyMatrix = new HyMatrix({
+//   signer: new Web3Provider(window.ethereum),
+//   // arJWK: arJWK
+// })
 
 // 若多个 ethereum 钱包同时存在，可使用 `eip6963:announceProvider` 和 `eip6963:requestProvider` 区分
 // 相关文档 https://eips.ethereum.org/EIPS/eip-6963#announce-and-request-events
@@ -566,17 +568,13 @@ async function main() {
       processId,
       data: '' // 可选, 默认为空字符串
   }
-  const result = await hyMatrix3.sendMessage(params)
+  const result = await hyMatrix.sendMessage(params)
   // { "id": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig"}
   console.log(result.id)
   // wait/ 稍等片刻
-  const result2 = await hyMatrix3.getResult(result.id)
+  const result2 = await hyMatrix.getResult(result.id)
   console.log(result2)
 }
 
 main()
 ```
-
-
-
-
