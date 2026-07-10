@@ -83,12 +83,12 @@ const hyMatrix3 = new HyMatrix({
  privateKey: ethereumPrivateKey
 })
 
-// or
+// or（与上方二选一，请勿重复声明）
 
 // arweave key-file json
-const hyMatrix3 = new HyMatrix({
- arJWK: arweaveKeyFile
-})
+// const hyMatrix3 = new HyMatrix({
+//  arJWK: arweaveKeyFile
+// })
 
 // 转账：以 hmAR 为例
 const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
@@ -120,47 +120,55 @@ main()
 import HyMatrix from 'hyjs-test'
 import { Web3Provider } from '@ethersproject/providers'
 
-// window.arweaveWallet.getActiveAddress()
-const accid = await window.arweaveWallet.getActiveAddress()
-const hyMatrix1 = new HyMatrix({
-  debug: true
-})
-
-hyMatrix1.info().then(console.log)
-hyMatrix1.balanceOf(accid).then(console.log)
-
-
-const hyMatrix2 = new HyMatrix({
-  accid: accid,
-  debug: true
-})
-
-hyMatrix2.balanceOf().then(console.log)
-
-
-// arweaveWallet : 'use_wallet' = window.arweaveWallet
-const hyMatrix3 = new HyMatrix({
- arJWK: 'use_wallet'
-})
-
-// or
-
-// 若多个 ethereum 钱包同时存在，可使用 `eip6963:announceProvider` 和 `eip6963:requestProvider` 区分
-// 相关文档 https://eips.ethereum.org/EIPS/eip-6963#announce-and-request-events
-const provider = new Web3Provider(window.ethereum)
-// ethereumWallet
-const hyMatrix3 = new HyMatrix({
- signer: provider
-})
-
-// 以 hmAR 为例
-const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
-const tags = [
-  { name: 'Action', value: 'Transfer' },
-  { name: 'Recipient', value: '收款地址' },
-  { name: 'Quantity', value: '100' }
-]
 async function main() {
+  // 请确保已安装 ArConnect 钱包插件
+  if (!window.arweaveWallet) {
+    throw new Error('未检测到 ArConnect 钱包，请先安装插件')
+  }
+  const accid = await window.arweaveWallet.getActiveAddress()
+
+  const hyMatrix1 = new HyMatrix({
+    debug: true
+  })
+
+  hyMatrix1.info().then(console.log)
+  hyMatrix1.balanceOf(accid).then(console.log)
+
+
+  const hyMatrix2 = new HyMatrix({
+    accid: accid,
+    debug: true
+  })
+
+  hyMatrix2.balanceOf().then(console.log)
+
+
+  // arweaveWallet : 'use_wallet' = window.arweaveWallet
+  const hyMatrix3 = new HyMatrix({
+   arJWK: 'use_wallet'
+  })
+
+  // or（与上方二选一，请勿重复声明）
+
+  // 若多个 ethereum 钱包同时存在，可使用 `eip6963:announceProvider` 和 `eip6963:requestProvider` 区分
+  // 相关文档 https://eips.ethereum.org/EIPS/eip-6963#announce-and-request-events
+  // 请确保已安装 ethereum 钱包插件
+  // if (!window.ethereum) {
+  //   throw new Error('未检测到 ethereum 钱包，请先安装插件')
+  // }
+  // const provider = new Web3Provider(window.ethereum)
+  // // ethereumWallet
+  // const hyMatrix3 = new HyMatrix({
+  //  signer: provider
+  // })
+
+  // 以 hmAR 为例
+  const processId = 'GuuH1wCOBatG-JoKu42NkJMC7Cx-rjD8F5EEICLTNP8'
+  const tags = [
+    { name: 'Action', value: 'Transfer' },
+    { name: 'Recipient', value: '收款地址' },
+    { name: 'Quantity', value: '100' }
+  ]
   const params = {
       tags,
       processId,
@@ -244,7 +252,7 @@ hyMatrix.getResult(messageId).then(console.log)
 
 | 方法                   | 描述                 | 参数                                           | 返回值                   |
 |------------------------|----------------------|------------------------------------------------|--------------------------|
-| `getResults(processId)`| 获取指定进程的所有结果 | `processId: string`, `limit: number`         | `MessageItemMap` |
+| `getResults(processId, limit)`| 获取指定进程的所有结果 | `processId: string`, `limit: number`         | `MessageItemMap` |
 
 ```ts
 const hyMatrix = new HyMatrix({
@@ -527,27 +535,27 @@ hyMatrix.stakeOf().then(console.log)
 
 ```ts
 // node
-import arweaveKeyfile form 'arweaveKeyfile.json'
-const arJWK = arweaveKeyfile
+import arweaveKeyFile from 'arweave-key-file.json'
+const arJWK = arweaveKeyFile
 
 // or
 const ethereumPrivateKey = '0x...' // 0x + 64位私钥， 共66位
 
 const hyMatrix = new HyMatrix({
   privateKey: ethereumPrivateKey,
-  // arJWK: arweaveKeyFile
+  // arJWK: arJWK  // 二选一
 })
 
 // web
-import { Web3Provider } from '@ethersproject/providers'
-const ethereumPrivateKey = '0x...' // 0x + 64位私钥， 共66位
+// import { Web3Provider } from '@ethersproject/providers'
+// const ethereumPrivateKey = '0x...' // 0x + 64位私钥， 共66位
 // or
-const arJWK = 'use_wallet'
+// const arJWK = 'use_wallet'
 
-const hyMatrix = new HyMatrix({
-  signer: new Web3Provider(window.ethereum),
-  // arJWK: arJWK
-})
+// const hyMatrix = new HyMatrix({
+//   signer: new Web3Provider(window.ethereum),
+//   // arJWK: arJWK
+// })
 
 // 若多个 ethereum 钱包同时存在，可使用 `eip6963:announceProvider` 和 `eip6963:requestProvider` 区分
 // 相关文档 https://eips.ethereum.org/EIPS/eip-6963#announce-and-request-events
@@ -566,17 +574,102 @@ async function main() {
       processId,
       data: '' // 可选, 默认为空字符串
   }
-  const result = await hyMatrix3.sendMessage(params)
+  const result = await hyMatrix.sendMessage(params)
   // { "id": "vDDowE3NrNKfAyZtfEGaTLrkOhr3DDB2D_-Vs22Z8ig"}
   console.log(result.id)
   // wait/ 稍等片刻
-  const result2 = await hyMatrix3.getResult(result.id)
+  const result2 = await hyMatrix.getResult(result.id)
   console.log(result2)
 }
 
 main()
 ```
 
+## TypeScript 类型定义
 
+以下为关键接口与类型定义，便于在 TypeScript 项目中获得更好的类型提示：
 
+```ts
+// 标签
+interface Tag {
+  name: string
+  value: string
+}
 
+// 发送消息参数
+interface SendMessageParams {
+  tags: Tag[]
+  processId: string
+  data?: string
+}
+
+// HyMatrix 信息
+interface HMInfo {
+  Protocol: string
+  Variant: string
+  'Join-Network': boolean
+  Token: string
+  Registry: string
+  Node: HMNode
+}
+
+// 节点信息
+interface HMNode {
+  'Acc-Id': string
+  Name: string
+  Role: string
+  Desc: string
+  URL: string
+}
+
+// 节点映射
+interface HMNodeMap {
+  [key: string]: HMNode
+}
+
+// 消息项
+interface MessageItem {
+  Nonce: string
+  Timestamp: string
+  'Item-Id': string
+  'From-Process': string
+  'Pushed-For': string
+  Messages: MessageItem[]
+  Spawns: any[]
+  Assignmengts: any[] | null
+  Output: {
+    data: string
+    print?: boolean
+    prompt?: string
+    [key: string]: any
+  }
+  Data: string
+  Error: string
+}
+
+// 消息项映射
+interface MessageItemMap {
+  edges: Array<{
+    cursor: string
+    node: MessageItem
+  }>
+}
+
+// Bundle 项
+interface BundleItem {
+  signatureType: number
+  signature: string
+  owner: string
+  target: string
+  anchor: string
+  tags: Tag[]
+  data: string
+  id: string
+  tagsBy?: string
+}
+
+// 响应
+interface Response {
+  id: string
+}
+```
